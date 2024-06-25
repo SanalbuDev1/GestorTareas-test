@@ -1,0 +1,20 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name:
+      webflux
+
+ms-config:
+  datasource:
+    r2dbpostgrest:
+      driver: postgresql
+      host: testpostgrest.postgres.database.azure.com
+      port: 5462
+      username: testadmin
+      password: Admin1234
+      database: postgres
+      poolinitialSize: 10
+      poolmaxSize: 20
+
