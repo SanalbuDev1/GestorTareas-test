@@ -11,7 +11,7 @@ ms-config:
     r2dbpostgrest:
       driver: postgresql
       host: testpostgrest.postgres.database.azure.com
-      port: 5462
+      port: 5432
       username: testadmin
       password: Admin1234
       database: postgres

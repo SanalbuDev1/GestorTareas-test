@@ -10,6 +10,8 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import io.r2dbc.spi.Connection;
 
+import java.time.Duration;
+
 @Repository
 @RequiredArgsConstructor
 public class TasksRepository implements RepositoryTask {
@@ -18,19 +20,18 @@ public class TasksRepository implements RepositoryTask {
     private final TasksMapeo tasksMapeo;
 
     String sqlBuscarTaskId="SELECT ID, TITLE, DESCRIPTION, STATUS, CREATED_AT\n" +
-            "FROM public.tasks where ID= :id";
+            "FROM public.tasks where ID= $1";
 
     String sqlBuscarTask="SELECT ID, TITLE, DESCRIPTION, STATUS, CREATED_AT\n" +
             "FROM public.tasks";
 
-    String sqlPrueba = "select 1 as \"campo1\"";
 
     @Override
     public Mono<Tasks> getById(int id) {
 
         return Mono.usingWhen(connectionFactory.create(),
                 connection -> Mono.from(connection.createStatement(sqlBuscarTaskId)
-                                .bind("id" , id)
+                                .bind("$1" , id)
                                 .execute())
                         .map( result -> result.map(tasksMapeo::map) )
                         .flatMap(Mono::from),
