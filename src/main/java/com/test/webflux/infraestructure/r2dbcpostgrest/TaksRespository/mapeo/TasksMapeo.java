@@ -15,7 +15,7 @@ public class TasksMapeo {
                 .title(fila.get("TITLE", String.class))
                 .description(fila.get("DESCRIPTION", String.class))
                 .status(fila.get("STATUS", String.class))
-                .createdAt(fila.get("CREATEAT", LocalDateTime.class))
+                .createdAt(fila.get("created_at", LocalDateTime.class))
                 .build();
     }
 }

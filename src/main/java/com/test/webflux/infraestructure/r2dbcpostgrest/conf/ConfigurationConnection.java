@@ -39,6 +39,7 @@ public class ConfigurationConnection {
                 .option(USER, usuarioConfig)
                 .option(PASSWORD, passwordConfig)
                 .option(DATABASE, databaseConfig)
+                .option(SSL,true)
                 .build();
 
         ConnectionFactory connectionFactory = ConnectionFactories.get(options);
